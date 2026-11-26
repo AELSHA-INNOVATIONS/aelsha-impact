@@ -1,0 +1,78 @@
+# Monday impact figures (Firstfruits ADR 0020 and its amendment). Reads the private BigQuery export object, checks it
+# again with build_impact_json.py and opens a PR, so a person looks before anything is published.
+# Inert until the repo variables IMPACT_WIF_PROVIDER, IMPACT_SERVICE_ACCOUNT and IMPACT_EXPORT_URI are set.
+# Workload Identity Federation: no JSON key and no secret is stored. A PR opened with GITHUB_TOKEN starts no
+# CI, so the checks run here before the PR is opened.
+name: Impact weekly
+
+on:
+  schedule:
+    - cron: '30 6 * * 1'  # Monday, after the BigQuery scheduled queries (03:00 to 04:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: impact-weekly
+  cancel-in-progress: false
+
+jobs:
+  figures:
+    if: vars.IMPACT_WIF_PROVIDER != '' && vars.IMPACT_SERVICE_ACCOUNT != '' && vars.IMPACT_EXPORT_URI != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Tests for the figures and the page
+        run: |
+          python3 -m unittest discover -s tests -t .
+          node --test tests/*.test.mjs
+
+      # Google's official action (accepted in the ADR 0020 amendment), pinned to v3.0.0.
+      - id: gcp
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.IMPACT_WIF_PROVIDER }}
+          service_account: ${{ vars.IMPACT_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_lifetime: 300s
+          create_credentials_file: false
+
+      - name: Read the export row
+        env:
+          TOKEN: ${{ steps.gcp.outputs.access_token }}
+          URI: ${{ vars.IMPACT_EXPORT_URI }}
+        run: |
+          [[ "$URI" =~ ^gs://([a-z0-9._-]+)/([A-Za-z0-9._/-]+\.json)$ ]] || { echo "IMPACT_EXPORT_URI must be gs://bucket/path.json"; exit 1; }
+          object=$(python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "${BASH_REMATCH[2]}")
+          curl -fsS --proto '=https' -H "Authorization: Bearer $TOKEN" -o "$RUNNER_TEMP/row.json" \
+            "https://storage.googleapis.com/storage/v1/b/${BASH_REMATCH[1]}/o/${object}?alt=media"
+
+      - name: Build impact.json (refuses on any floor or rounding fault)
+        run: |
+          python3 -I build_impact_json.py "$RUNNER_TEMP/row.json" static.json \
+            config.json docs/impact.json
+          rm -f "$RUNNER_TEMP/row.json"
+
+      - name: Open the Monday PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- docs/impact.json config.json; then
+            echo "No change in the figures."; exit 0
+          fi
+          branch="impact/week-$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add docs/impact.json config.json
+          git commit -m "impact: weekly figures $(date -u +%Y-%m-%d)"
+          git push -u origin "$branch"
+          gh pr create --base main --head "$branch" --title "impact: weekly figures $(date -u +%Y-%m-%d)" --body \
+            "Weekly aelsha.in/impact figures (ADR 0020). Please look before merging: every figure says at least, nothing under 50 phones, no country or language names. If launched_on changed in config.json, this is the first live week."

@@ -1,0 +1,67 @@
+/* aelsha.in/impact. Tokens from impact-dashboard-ux.md section 6. No motion, no up/down colours. */
+:root {
+  --surface: #FBF8F2; --text: #231F1A; --muted: #4A433B; --card: #FFFFFF; --bar: #1F6F6B; --line: #D9D2C5;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --surface: #16181A; --text: #ECE8E1; --muted: #C9C3BA; --card: #202326; --bar: #6CC4BD; --line: #3A3E42; }
+}
+* { box-sizing: border-box; }
+html { font-size: 112.5%; }
+body {
+  margin: 0; background: var(--surface); color: var(--text);
+  font-family: system-ui, "Noto Sans", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Malayalam", sans-serif;
+  line-height: 1.5; overflow-wrap: anywhere;
+}
+:lang(ta), :lang(te), :lang(ml) { line-height: 1.6; }
+header, main, footer { max-width: 60rem; margin-inline: auto; padding-inline: 1rem; }
+header p, section > p, blockquote { max-width: 68ch; }
+h1 { font-size: 1.8rem; line-height: 1.2; margin-block: 1.5rem 0.75rem; }
+h2 { font-size: 1.3rem; margin-block: 2rem 0.75rem; }
+h3 { font-size: 1.1rem; }
+h4 { margin-block: 0 0.25rem; font-size: 1rem; }
+a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:focus-visible, summary:focus-visible, #numbers:focus-visible { outline: 3px solid var(--bar); outline-offset: 2px; }
+nav a, summary { display: inline-flex; align-items: center; min-height: 48px; padding-inline-end: 1rem; }
+.skip { position: absolute; inset-inline-start: -999rem; }
+.skip:focus { position: static; display: inline-block; padding: 0.75rem; }
+.lede { font-size: 1.05rem; }
+.stale, .small, .week { color: var(--muted); }
+.small { font-size: 0.9rem; }
+.notice { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+.cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 720px) { .cards { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; break-inside: avoid; }
+.card p { margin: 0 0 0.5rem; }
+.big { display: block; font-size: 2rem; font-weight: 700; line-height: 1.2; }
+.hidden-figure { color: var(--muted); }
+.map { width: 12rem; max-width: 100%; height: auto; display: block; margin-block: 0.5rem; }
+.map .on { fill: var(--bar); }
+.map .off { fill: none; stroke: var(--line); stroke-width: 1; }
+.chart { margin: 0 0 1.5rem; }
+.chart svg { width: 100%; max-width: 30rem; height: auto; display: block; }
+.chart rect { fill: var(--bar); }
+.chart line { stroke: var(--line); }
+.chart text { fill: var(--text); font-size: 8px; text-anchor: middle; }
+.chart text.hid { fill: var(--muted); }
+[dir="rtl"] .chart svg { transform: scaleX(-1); }
+[dir="rtl"] .chart text { transform: scaleX(-1); transform-box: fill-box; transform-origin: center; }
+table { border-collapse: collapse; }
+th, td { text-align: start; padding: 0.25rem 1rem 0.25rem 0; border-bottom: 1px solid var(--line); }
+.sent-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 720px) { .sent-grid { grid-template-columns: repeat(3, 1fr); } }
+.sent-grid > div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+.bibles { padding-inline-start: 1.25rem; }
+blockquote {
+  font-family: Georgia, "Noto Serif", serif; font-size: 1.15rem; margin-inline: 0; margin-block: 1.5rem;
+  padding-block-start: 1rem; border-top: 1px solid #C9A86A;
+}
+footer { padding-block: 2rem; color: var(--muted); }
+.print-only { display: none; }
+@media print {
+  :root { --surface: #fff; --text: #000; --muted: #000; --card: #fff; --bar: #000; --line: #999; }
+  nav, .skip { display: none; }
+  .print-only { display: block; }
+  .cards, .sent-grid { grid-template-columns: 1fr; }
+  details > *:not(summary) { display: block; }
+}

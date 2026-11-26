@@ -1,0 +1,85 @@
+{
+ "schema_version": 1,
+ "status": "live",
+ "generated_at": "2027-06-07T06:00:00Z",
+ "data_through": "2027-06-06",
+ "reading": {
+  "readers_week": 1200,
+  "readers_4wk": 3400,
+  "days_begun": {
+   "total": 48000,
+   "week": 1800
+  },
+  "hours": {
+   "total": 9000,
+   "week": 300
+  },
+  "chapters": {
+   "total": 31000,
+   "week": 450
+  },
+  "verses_approx": 800000,
+  "minutes_p25": 6,
+  "minutes_p75": 14
+ },
+ "returning": {
+  "readers_3mo_plus": 1200,
+  "rate_1mo_tenths": 4,
+  "rate_3mo_tenths": 2
+ },
+ "doorway": {
+  "on_rate_tenths": 6,
+  "step_outs": 5000
+ },
+ "reach": {
+  "installs_total": 12000,
+  "active_last_month": 7000,
+  "countries": 41,
+  "continents": [
+   "africa",
+   "asia",
+   "europe",
+   "north_america",
+   "south_america"
+  ],
+  "languages_count": 10
+ },
+ "months": {
+  "series": [
+   {
+    "month": "2027-04",
+    "readers": 2900,
+    "hours": 800,
+    "chapters": 2600
+   },
+   {
+    "month": "2027-05",
+    "readers": null,
+    "hours": 900,
+    "chapters": 2800
+   }
+  ]
+ },
+ "hidden_count": 0,
+ "static": {
+  "currency": "INR",
+  "running_cost_text": "Running cost last quarter: sample text.",
+  "translations_reviewed_all": false,
+  "version": null,
+  "tracking_kits": 1,
+  "ad_kits": 0,
+  "bible_texts": 10,
+  "repo_public": false,
+  "repo_url": null,
+  "prayer_language": "ta",
+  "contact": "hello@example.org"
+ },
+ "corrections": [
+  {
+   "date": "2027-01-11",
+   "figure": "Hours since launch",
+   "was": "at least 900",
+   "now": "at least 800"
+  }
+ ]
+}

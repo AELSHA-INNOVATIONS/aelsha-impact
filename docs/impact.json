@@ -1,0 +1,21 @@
+{
+ "schema_version": 1,
+ "status": "pre_launch",
+ "generated_at": "2026-11-23T06:00:00Z",
+ "data_through": "2026-11-22",
+ "hidden_count": 0,
+ "static": {
+  "currency": "INR",
+  "running_cost_text": null,
+  "translations_reviewed_all": false,
+  "version": null,
+  "tracking_kits": 1,
+  "ad_kits": 0,
+  "bible_texts": 10,
+  "repo_public": false,
+  "repo_url": null,
+  "prayer_language": "ta",
+  "contact": null
+ },
+ "corrections": []
+}
