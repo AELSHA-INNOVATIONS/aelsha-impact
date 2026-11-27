@@ -1,0 +1,6 @@
+Lutherbibel 1912 (gemeinfrei)
+
+Public domain.
+
+Source: eBible.org deu1912
+Redistributed unchanged in wording by Aelsha Foundation for the Firstfruits app (docs/adr/0030).

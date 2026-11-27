@@ -1,0 +1,9 @@
+Bíblia Livre (BLIVRE), © Diego Santos, Mario Sérgio e Marco Teles, CC BY 4.0
+
+Licensed under Creative Commons Attribution 4.0 International.
+Licence: https://creativecommons.org/licenses/by/4.0/
+
+Changes: converted from the eBible.org USFM source into the Firstfruits SQLite format (formatting adapted; the wording is unchanged).
+
+Source: eBible.org porbr2018
+Redistributed unchanged in wording by Aelsha Foundation for the Firstfruits app (docs/adr/0030).
