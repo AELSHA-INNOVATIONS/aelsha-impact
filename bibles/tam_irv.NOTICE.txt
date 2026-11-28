@@ -1,0 +1,9 @@
+Indian Revised Version (IRV) - Tamil, © 2017, 2019 Bridge Connectivity Solutions Pvt. Ltd., CC BY-SA 4.0
+
+Licensed under Creative Commons Attribution-ShareAlike 4.0 International. Changed versions must stay under the same licence.
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes: converted from the eBible.org USFM source into the Firstfruits SQLite format (formatting adapted; the wording is unchanged).
+
+Source: eBible.org tam2017
+Redistributed unchanged in wording by Aelsha Foundation for the Firstfruits app (docs/adr/0030).

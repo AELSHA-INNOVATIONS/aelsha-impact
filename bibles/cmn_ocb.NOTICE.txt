@@ -1,0 +1,9 @@
+圣经当代译本开放资源，版权所有 © 1979, 2005, 2007, 2011, 2022 Biblica, Inc.，采用 CC BY-SA 4.0 许可（https://creativecommons.org/licenses/by-sa/4.0/）。原作品属于国际圣经协会，在 www.biblica.com 和 open.bible 可以免费使用。
+
+Open Chinese Contemporary Bible (Biblica Open Chinese Contemporary Bible), © 1979, 2005, 2007, 2011, 2022 Biblica, Inc. Licensed under Creative Commons Attribution-ShareAlike 4.0 International. Changed versions must stay under the same licence.
+Licence: https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes: converted from the eBible.org USFM source into the Firstfruits SQLite format (formatting adapted; the wording is unchanged).
+
+Source: eBible.org cmncbs
+Redistributed unchanged in wording by Aelsha Foundation for the Firstfruits app (docs/adr/0029, 0030).
