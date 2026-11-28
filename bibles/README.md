@@ -1,6 +1,6 @@
 # Bible files for the Firstfruits app
 
-These are the Bibles the Firstfruits app downloads the first time someone taps one (Firstfruits ADR 0030). KJV and Tamil IRV ship inside the app and are not here.
+These are the Bibles the Firstfruits app downloads the first time someone taps one (Firstfruits ADR 0030). KJV and the Tamil O.V. (1957) ship inside the app and are not here (Firstfruits ADR 0032); Tamil IRV is here since 28 Nov 2026.
 
 - Each `<id>.db.gz` is byte for byte the file built into the full app. Its licence and required notice are in `<id>.NOTICE.txt` beside it.
 - **The licence of this repository does not cover this folder.** Each Bible keeps its own licence: public domain, CC BY 4.0 or CC BY-SA 4.0, as its notice says.
